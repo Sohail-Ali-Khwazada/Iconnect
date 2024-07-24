@@ -15,7 +15,10 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json()); 
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+  origin: "https://my-chat-app-frontend-g9zh.onrender.com",
+  credentials: true
+}));
 
 app.use("/api/auth",authRoutes);
 app.use("/api/users",userRoutes);
