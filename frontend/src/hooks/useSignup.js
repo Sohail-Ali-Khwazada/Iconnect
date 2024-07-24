@@ -15,7 +15,7 @@ function useSignup() {
     setLoading(true);
 
     try{
-      const res = await fetch("/api/auth/signup",{
+      const res = await fetch("https://my-chat-app-6xac.onrender.com/api/auth/signup",{
         method: "Post",
         headers: {"Content-Type" : "application/json"},
         body: JSON.stringify({fullName,username,password,confirmPassword,gender})

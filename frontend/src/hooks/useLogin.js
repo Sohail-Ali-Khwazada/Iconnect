@@ -15,7 +15,7 @@ function useLogin() {
     setLoading(true);
 
     try{
-      const res = await fetch("/api/auth/login",{
+      const res = await fetch("https://my-chat-app-6xac.onrender.com/api/auth/login",{
         method: "Post",
         headers: {"Content-Type" : "application/json"},
         body: JSON.stringify({username,password})
