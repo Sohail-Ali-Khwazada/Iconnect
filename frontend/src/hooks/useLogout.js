@@ -13,7 +13,8 @@ function useLogout() {
     try {
       const res = await fetch("https://my-chat-app-6xac.onrender.com/api/auth/logout", {
         method:"POST",
-        headers: {"Content-Type": "application/json"}
+        headers: {"Content-Type": "application/json"},
+        credentials: 'include'
       })
       const data = await res.json();
       if(data.error) {

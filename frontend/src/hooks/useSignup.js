@@ -18,7 +18,8 @@ function useSignup() {
       const res = await fetch("https://my-chat-app-6xac.onrender.com/api/auth/signup",{
         method: "Post",
         headers: {"Content-Type" : "application/json"},
-        body: JSON.stringify({fullName,username,password,confirmPassword,gender})
+        body: JSON.stringify({fullName,username,password,confirmPassword,gender}),
+        credentials: 'include'
       });
       const data = await res.json();
       if(data.error) {

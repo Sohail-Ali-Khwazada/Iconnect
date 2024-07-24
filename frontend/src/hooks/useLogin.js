@@ -18,7 +18,8 @@ function useLogin() {
       const res = await fetch("https://my-chat-app-6xac.onrender.com/api/auth/login",{
         method: "Post",
         headers: {"Content-Type" : "application/json"},
-        body: JSON.stringify({username,password})
+        body: JSON.stringify({username,password}),
+        credentials: 'include'
       });
       const data = await res.json();
       if(data.error) {
