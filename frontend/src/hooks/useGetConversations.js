@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast";
 import useToken from "../zustand/useToken";
+import { useAuthContext } from "../context/AuthContext";
 
 
 function useGetConversations() {
@@ -8,6 +9,7 @@ function useGetConversations() {
   const [conversations,setConversations] = useState([]);
 
   const {authToken} = useToken();
+  const {authUser} = useAuthContext();
 
   useEffect(() => {
     const getConversations = async() => {
@@ -40,7 +42,7 @@ function useGetConversations() {
       }
     }
     getConversations();
-  },[]);
+  },[authUser]);
   return {loading,conversations};
 };
 
