@@ -36,6 +36,7 @@ function useLogin() {
       }
       const { token, ...userdata } = data;
       localStorage.setItem("chat-user", JSON.stringify(userdata));
+      localStorage.setItem("jwt", JSON.stringify(token));
       setAuthUser(userdata);
       setAuthToken(token);
 

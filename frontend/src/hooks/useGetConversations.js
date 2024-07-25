@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast";
 import useToken from "../zustand/useToken";
-import { useAuthContext } from "../context/AuthContext";
+
 
 
 function useGetConversations() {
   const [loading,setLoading] = useState();
   const [conversations,setConversations] = useState([]);
 
+
   const {authToken} = useToken();
-  const {authUser} = useAuthContext();
+  
 
   useEffect(() => {
+    
     const getConversations = async() => {
       setLoading(true);
       try {
-
         // const res = await fetch("http://localhost:5000/api/users", {
         //   method: "GET",
         //   headers: {
@@ -42,7 +43,7 @@ function useGetConversations() {
       }
     }
     getConversations();
-  },[authUser]);
+  },[]);
   return {loading,conversations};
 };
 

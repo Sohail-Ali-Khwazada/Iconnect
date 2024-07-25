@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 
 const useToken = create((set) => ({
-  authToken: null,
+  authToken:JSON.parse(localStorage.getItem("jwt")),
   
   setAuthToken: (newToken) => set({authToken: newToken}),
 
