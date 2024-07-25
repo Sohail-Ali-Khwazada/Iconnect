@@ -32,12 +32,14 @@ export const signUp = async (req, res) => {
     })
 
     if (newUser) {
-      generateTokenAndSetCookie(newUser._id, res);
+
+      const token = generateTokenAndSetCookie(newUser._id, res);
       res.status(201).json({
         _id: newUser._id,
         fullName: newUser.fullName,
         username: newUser.username,
-        profilePic: newUser.profilePic
+        profilePic: newUser.profilePic,
+        token
       });
     } else {
       res.status(400).json({ error: "Invalid user data" });
@@ -58,13 +60,15 @@ export const loginUser = async (req, res) => {
       return res.status(400).json({ error: "Invalid username or password" });
     }
 
-    generateTokenAndSetCookie(user._id, res);
+
+    const token = generateTokenAndSetCookie(user._id, res);
 
     res.status(200).json({
       _id: user._id,
       fullName: user.fullName,
       username: user.username,
-      profilePic: user.profilePic
+      profilePic: user.profilePic,
+      token
     });
 
   } catch (error) {
@@ -75,7 +79,7 @@ export const loginUser = async (req, res) => {
 
 export const logoutUser = (req, res) => {
   try {
-    res.cookie("jwt","",{maxAge:0});
+
     res.status(200).json({message: "Logged out successfully"});
   } catch (error) {
     console.log("Error in logout controller", error.message);

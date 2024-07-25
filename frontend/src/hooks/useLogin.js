@@ -2,11 +2,14 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../context/AuthContext";
 
+import useToken from "../zustand/useToken";
+
 
 
 function useLogin() {
   const [loading, setLoading] = useState(false);
   const {setAuthUser} = useAuthContext();
+  const {setAuthToken} = useToken();
 
   const login = async(username,password) => {
     const success = handleInputErrors(username,password);
@@ -21,12 +24,21 @@ function useLogin() {
         body: JSON.stringify({username,password}),
         credentials: 'include'
       });
+      // const res = await fetch("http://localhost:5000/api/auth/login",{
+      //   method: "Post",
+      //   headers: {"Content-Type" : "application/json"},
+      //   body: JSON.stringify({username,password}),
+      //   credentials: 'include'
+      // });
       const data = await res.json();
       if(data.error) {
         throw new Error(data.error);
       }
-      localStorage.setItem("chat-user",JSON.stringify(data));
-      setAuthUser(data);
+      const { token, ...userdata } = data;
+      localStorage.setItem("chat-user", JSON.stringify(userdata));
+      setAuthUser(userdata);
+      setAuthToken(token);
+
       return true;
 
     } catch(error){
