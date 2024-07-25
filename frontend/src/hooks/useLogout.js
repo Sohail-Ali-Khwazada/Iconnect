@@ -24,6 +24,7 @@ function useLogout() {
         throw new Error(data.error);
       }
       localStorage.removeItem("chat-user");
+      localStorage.removeItem("jwt");
       setAuthUser(null);
       setAuthToken(null);
       // navigate("/login");
