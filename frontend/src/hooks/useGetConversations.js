@@ -17,14 +17,7 @@ function useGetConversations() {
     const getConversations = async() => {
       setLoading(true);
       try {
-        // const res = await fetch("http://localhost:5000/api/users", {
-        //   method: "GET",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //     "Authorization": `Bearer ${authToken}`
-        //   }
-        // });
-        const res = await fetch("https://my-chat-app-6xac.onrender.com/api/users", {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URI}/api/users`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

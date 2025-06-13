@@ -18,18 +18,12 @@ function useLogin() {
     setLoading(true);
 
     try{
-      const res = await fetch("https://my-chat-app-6xac.onrender.com/api/auth/login",{
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URI}/api/auth/login`,{
         method: "Post",
         headers: {"Content-Type" : "application/json"},
         body: JSON.stringify({username,password}),
         credentials: 'include'
       });
-      // const res = await fetch("http://localhost:5000/api/auth/login",{
-      //   method: "Post",
-      //   headers: {"Content-Type" : "application/json"},
-      //   body: JSON.stringify({username,password}),
-      //   credentials: 'include'
-      // });
       const data = await res.json();
       if(data.error) {
         throw new Error(data.error);

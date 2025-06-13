@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json()); 
 app.use(cookieParser());
 app.use(cors({
-  origin: ["https://my-chat-app-frontend-g9zh.onrender.com","http://localhost:5173"],
+  origin: process.env.FRONTEND_URI,
   credentials: true
 }));
 
