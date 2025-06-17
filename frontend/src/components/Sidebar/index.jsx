@@ -1,4 +1,4 @@
-import { useGlobalContext } from "../context/GlobalContext";
+import { useGlobalContext } from "../../context/GlobalContext";
 import Conversations from "./Conversations";
 import Logout from "./Logout";
 import Search from "./Search";

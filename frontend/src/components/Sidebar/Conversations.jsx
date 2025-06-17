@@ -1,12 +1,25 @@
-import { useSocketContext } from "../context/SocketContext";
-import { useGlobalContext } from "../context/GlobalContext";
+import useGetConversations from "../../hooks/useGetConversations";
+import { useSocketContext } from "../../context/SocketContext";
+import { useGlobalContext } from "../../context/GlobalContext";
 
+
+function Conversations() {
+  const {loading,conversations} = useGetConversations();
+  return (
+    <div className="h-[84.5vh] flex flex-col overflow-y-auto">
+
+      {conversations.map((conversation) => 
+        <Conversation key={conversation._id} conversation={conversation}/>
+      )}
+
+    {loading ? <span className="loading loading-spinner mx-auto"></span> : null}
+    </div>
+  )
+}
 
 function Conversation({conversation}) {
   const {selectedConversation,setSelectedConversation} = useGlobalContext();
-
   const isSelected = selectedConversation?._id === conversation._id;
-
   const {onlineUsers} = useSocketContext();
   const isOnline = onlineUsers.includes(conversation._id) ? "online" : "";
   
@@ -35,4 +48,4 @@ function Conversation({conversation}) {
   )
 }
 
-export default Conversation
+export default Conversations

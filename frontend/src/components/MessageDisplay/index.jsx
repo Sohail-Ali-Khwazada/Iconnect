@@ -3,8 +3,7 @@ import Messageinput from "./Messageinput";
 import { TiMessages } from "react-icons/ti";
 import { useEffect } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { useGlobalContext } from "../context/GlobalContext";
-
+import { useGlobalContext } from "../../context/GlobalContext";
 
 
 

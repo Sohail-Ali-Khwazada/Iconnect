@@ -1,5 +1,5 @@
 
-import Signup from "./components/Signup"
+import Signup from "./pages/Signup"
 
 function App() {
 

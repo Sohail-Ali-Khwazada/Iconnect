@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IoMdSend } from "react-icons/io";
-import useSendMessage from "../hooks/useSendMessage";
+import useSendMessage from "../../hooks/useSendMessage";
 
 
 function Messageinput() {

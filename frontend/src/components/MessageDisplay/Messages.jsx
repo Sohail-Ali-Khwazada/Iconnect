@@ -1,8 +1,7 @@
 import { useEffect, useRef } from "react";
-import useGetMessages from "../hooks/useGetMessages"
+import useGetMessages from "../../hooks/useGetMessages"
 import Message from "./Message"
-import MessageSkeleton from "./MessageSkeleton";
-import useListenMessages from "../hooks/useListenMessages";
+import useListenMessages from "../../hooks/useListenMessages";
 
 
 function Messages() {
@@ -10,12 +9,13 @@ function Messages() {
   useListenMessages();
   const lastMessageRef = useRef();
 
-  console.log(messages);
+
   useEffect(()=>{
     setTimeout(() => {
       lastMessageRef.current?.scrollIntoView({behavior: "smooth"});
     },100)
   },[messages])
+
   return (
     <div className="overflow-y-auto px-4 h-[83%] ">
       {loading && (
@@ -37,6 +37,28 @@ function Messages() {
     </div>
   )
 }
+
+
+function MessageSkeleton() {
+  return (
+    <>
+      <div className='flex gap-3 items-center'>
+        <div className='skeleton w-10 h-10 rounded-full shrink-0 border border-gray-700'></div>
+        <div className='flex flex-col gap-1'>
+          <div className='skeleton h-4 w-40 border border-gray-700'></div>
+          <div className='skeleton h-4 w-40 border border-gray-700'></div>
+        </div>
+      </div>
+      <div className='flex gap-3 items-center justify-end'>
+        <div className='flex flex-col gap-1'>
+          <div className='skeleton h-4 w-40 border border-gray-700'></div>
+        </div>
+        <div className='skeleton w-10 h-10 rounded-full shrink-0 border border-gray-700'></div>
+      </div>
+    </>
+  );
+};
+
 
 export default Messages
 

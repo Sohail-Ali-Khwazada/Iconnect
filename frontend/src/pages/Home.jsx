@@ -1,5 +1,5 @@
-import MessageDisplay from "./MessageDisplay"
-import Sidebar from "./Sidebar"
+import MessageDisplay from "../components/MessageDisplay"
+import Sidebar from "../components/Sidebar"
 
 
 function Home() {

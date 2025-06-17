@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
-import { useGlobalContext } from "../context/GlobalContext";
-import useGetConversations from "../hooks/useGetConversations";
+import { useGlobalContext } from "../../context/GlobalContext";
+import useGetConversations from "../../hooks/useGetConversations";
 import toast from "react-hot-toast";
 
 function Search() {
