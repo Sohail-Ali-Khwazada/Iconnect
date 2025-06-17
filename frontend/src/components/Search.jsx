@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
-import useConversation from "../zustand/useConversation";
+import { useGlobalContext } from "../context/GlobalContext";
 import useGetConversations from "../hooks/useGetConversations";
 import toast from "react-hot-toast";
 
 function Search() {
   const [search, setSearch] = useState("");
-  const {setSelectedConversation}= useConversation();
+  const {setSelectedConversation}= useGlobalContext();
   const {conversations} = useGetConversations();
 
   const handleSubmit = (e) => {

@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast";
-import useToken from "../zustand/useToken";
+import { useGlobalContext } from "../context/GlobalContext";
 
 
 
 function useGetConversations() {
   const [loading,setLoading] = useState();
   const [conversations,setConversations] = useState([]);
+  const {authToken} = useGlobalContext();
 
 
-  const {authToken} = useToken();
   
 
   useEffect(() => {

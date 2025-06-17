@@ -1,9 +1,9 @@
 import { useSocketContext } from "../context/SocketContext";
-import useConversation from "../zustand/useConversation"
+import { useGlobalContext } from "../context/GlobalContext";
 
 
 function Conversation({conversation}) {
-  const {selectedConversation,setSelectedConversation} = useConversation();
+  const {selectedConversation,setSelectedConversation} = useGlobalContext();
 
   const isSelected = selectedConversation?._id === conversation._id;
 

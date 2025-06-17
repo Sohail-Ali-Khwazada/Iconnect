@@ -1,12 +1,9 @@
 import { useState } from "react"
-import useConversation from "../zustand/useConversation";
-import useToken from "../zustand/useToken";
-
+import { useGlobalContext } from "../context/GlobalContext";
 
 function useSendMessage() {
   const [loading,setLoading] = useState(false);
-  const {messages,setMessages,selectedConversation}= useConversation();
-  const {authToken} = useToken();
+  const {authToken,messages,setMessages,selectedConversation} = useGlobalContext();
 
   const sendMessage = async(message) => {
     setLoading(true);

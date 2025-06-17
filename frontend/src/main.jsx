@@ -6,8 +6,8 @@ import Home from "./components/Home";
 import { Toaster } from "react-hot-toast";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import './index.css';
-import { AuthContextProvider } from './context/AuthContext.jsx';
 import ProtectedRoute from './components/Protectedroute.jsx';
+import { GlobalContextProvider } from './context/GlobalContext.jsx';
 import { SocketContextProvider } from './context/SocketContext.jsx';
 
 const router = createBrowserRouter([
@@ -31,11 +31,11 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthContextProvider>
+    <GlobalContextProvider>
       <SocketContextProvider>
         <RouterProvider router={router} />
         <Toaster />
       </SocketContextProvider>
-    </AuthContextProvider>
+    </GlobalContextProvider>
   </React.StrictMode>
 )

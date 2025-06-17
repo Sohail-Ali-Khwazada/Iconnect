@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react"
-import useConversation from "../zustand/useConversation";
 import toast from "react-hot-toast";
-import useToken from "../zustand/useToken";
+import { useGlobalContext } from "../context/GlobalContext";
 
 
 function useGetMessages() {
  
   const [loading,setLoading] = useState(false);
-  const {messages,setMessages,selectedConversation}= useConversation();
-  const {authToken} = useToken();
+  const {authToken,messages,setMessages,selectedConversation} = useGlobalContext();
+  
 
   useEffect(() => {
     const getMessages = async() => {

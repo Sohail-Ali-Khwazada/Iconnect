@@ -1,13 +1,12 @@
 import { useState } from "react"
-import { useAuthContext } from "../context/AuthContext";
-import useToken from "../zustand/useToken";
+import { useGlobalContext } from "../context/GlobalContext";
 // import { useNavigate } from "react-router-dom";
 
 
 function useLogout() {
   const [loading,setLoading] = useState(false);
-  const {setAuthUser} = useAuthContext();
-  const {setAuthToken} = useToken();
+  const {setAuthUser,setAuthToken} = useGlobalContext();
+
   // const navigate = useNavigate();
 
   const logout = async() => {

@@ -1,16 +1,15 @@
 import Messages from "./Messages";
 import Messageinput from "./Messageinput";
 import { TiMessages } from "react-icons/ti";
-import useConversation from "../zustand/useConversation";
 import { useEffect } from "react";
-import { useAuthContext } from "../context/AuthContext";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { useGlobalContext } from "../context/GlobalContext";
 
 
 
 
 function MessageDisplay() {
-  const {selectedConversation, setSelectedConversation} = useConversation();
+  const {selectedConversation, setSelectedConversation} = useGlobalContext();
 
   useEffect(()=> {
 
@@ -33,7 +32,7 @@ function MessageDisplay() {
 }
 
 function NoChatSelected() {
-  const {authUser} = useAuthContext();
+  const {authUser} = useGlobalContext();
   return (
     <div className="flex items-center justify-center w-full h-full">
       <div className="px-4 text-center sm:text-lg md:text-xl font-semibold flex flex-col items-center gap-2 text-gray-200">

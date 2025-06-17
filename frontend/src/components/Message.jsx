@@ -1,9 +1,8 @@
-import { useAuthContext } from '../context/AuthContext';
-import useConversation from '../zustand/useConversation';
+import { useGlobalContext } from '../context/GlobalContext';
+
 
 function Message({ message }) {
-  const { authUser } = useAuthContext();
-  const { selectedConversation } = useConversation();
+  const { authUser,selectedConversation } = useGlobalContext();
 
   const fromMe = message.senderId === authUser._id;
   const chatClassName = fromMe ? "chat-end" : "chat-start";

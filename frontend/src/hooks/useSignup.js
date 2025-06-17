@@ -1,14 +1,14 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useAuthContext } from "../context/AuthContext";
-import useToken from "../zustand/useToken";
+import { useGlobalContext } from "../context/GlobalContext";
+
 
 
 
 function useSignup() {
   const [loading, setLoading] = useState(false);
-  const { setAuthUser } = useAuthContext();
-  const {setAuthToken} = useToken();
+  const { setAuthUser,setAuthToken } = useGlobalContext();
+
 
   const signup = async ({ fullName, username, password, confirmPassword, gender }) => {
     const success = handleInputErrors({ fullName, username, password, confirmPassword, gender });
