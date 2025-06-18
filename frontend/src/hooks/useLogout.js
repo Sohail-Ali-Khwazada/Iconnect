@@ -1,13 +1,12 @@
 import { useState } from "react"
 import { useGlobalContext } from "../context/GlobalContext";
-// import { useNavigate } from "react-router-dom";
+
 
 
 function useLogout() {
   const [loading,setLoading] = useState(false);
-  const {setAuthUser,setAuthToken} = useGlobalContext();
+  const {setAuthUser,setAuthToken,setSelectedConversation} = useGlobalContext();
 
-  // const navigate = useNavigate();
 
   const logout = async() => {
     setLoading(true);
@@ -25,7 +24,7 @@ function useLogout() {
       localStorage.removeItem("jwt");
       setAuthUser(null);
       setAuthToken(null);
-      // navigate("/login");
+      setSelectedConversation(null);
     } catch(error) {
       toast.error(error.message);
     } finally{

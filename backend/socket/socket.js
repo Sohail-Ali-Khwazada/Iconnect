@@ -26,6 +26,21 @@ io.on("connection",(socket) => {
   if(userId != "undefined") userSocketMap[userId] = socket.id;
   io.emit("getOnlineUsers",Object.keys(userSocketMap));
 
+  socket.on("typing",({from,to})=> {
+    const to_socket_id = getReceiverSocketId(to);
+    if(to_socket_id) {
+      io.to(to_socket_id).emit("typing",{from});
+    }
+  })
+
+  socket.on("stopTyping", ({from,to})=> {
+    
+    const to_socket_id = getReceiverSocketId(to);
+    if(to_socket_id) {
+      io.to(to_socket_id).emit("stopTyping",{from});
+    }
+  })
+
   socket.on("disconnect",()=> {
     console.log("user disconnected",socket.id);
     delete userSocketMap[userId];
