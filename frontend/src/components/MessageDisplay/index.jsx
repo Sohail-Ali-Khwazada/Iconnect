@@ -11,15 +11,20 @@ function MessageDisplay() {
   const {selectedConversation, setSelectedConversation} = useGlobalContext();
 
   useEffect(()=> {
+    
 
     return ()=> setSelectedConversation(null);
   },[]);
 
   return (
     <div className={`md:flex md:flex-col md:w-3/4 border border-black w-screen ${!selectedConversation && "hidden"}`}>
-      {!selectedConversation ? <NoChatSelected /> :<><div className="bg-[#444C51] px-4 py-2 mb-2 flex items-center relative">
-        <span className="label-text">To: </span>
-        <span className="font-bold">{selectedConversation.fullName}</span>
+      {!selectedConversation ? <NoChatSelected /> :<><div className="bg-[#444C51] px-4 py-4 mb-2 flex items-center relative">
+        <span className="label-text w-7 rounded-full">          
+            <img
+              alt="Profile photo"
+              src={selectedConversation.profilePic} />
+          </span>
+        <span className="font-bold ml-2">{selectedConversation.fullName}</span>
         <IoMdArrowRoundBack className="absolute right-3 w-8 h-5 cursor-pointer" onClick={()=> setSelectedConversation(null)}/>
       </div>
         <Messages />

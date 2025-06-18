@@ -8,7 +8,7 @@ function Message({ message }) {
   const chatClassName = fromMe ? "chat-end" : "chat-start";
   const profilePic = fromMe ? authUser.profilePic : selectedConversation?.profilePic;
   const bubbleBgColor = fromMe ? "bg-[#6D3DF2]" : "";
-  const name = fromMe ? authUser.username : selectedConversation?.username;
+  const name = fromMe ? "Me" : selectedConversation?.username;
 
   const padZero = (number)=> {
     return number.toString().padStart(2, "0");
