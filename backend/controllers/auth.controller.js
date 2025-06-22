@@ -19,16 +19,15 @@ export const signUp = async (req, res) => {
     //Hash password here
     const hashPassword = await bcrypt.hash(password, 10);
 
-    //https://avatar-placeholder.iran.liara.run
-    const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`;
-    const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${username}`;
+   
+    const profilePic = `https://ui-avatars.com/api/?name=${fullName}`;
 
     const newUser = await User.create({
       fullName,
       username,
       password: hashPassword,
       gender,
-      profilePic: gender === "male" ? boyProfilePic : girlProfilePic
+      profilePic 
     })
 
     if (newUser) {
