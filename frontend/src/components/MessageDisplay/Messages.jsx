@@ -2,10 +2,12 @@ import { useEffect, useRef } from "react";
 import useGetMessages from "../../hooks/useGetMessages";
 import Message from "./Message";
 import useListenMessages from "../../hooks/useListenMessages";
+import useListenTyping from "../../hooks/useListenTyping";
 
-function Messages({ typingStatus }) {
+function Messages() {
   const { messages, loading } = useGetMessages();
   useListenMessages();
+  const { typingStatus } = useListenTyping();
   const lastMessageRef = useRef();
 
   useEffect(() => {

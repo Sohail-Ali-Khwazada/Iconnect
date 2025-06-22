@@ -1,35 +1,12 @@
 import Messages from "./Messages";
 import Messageinput from "./Messageinput";
 import { TiMessages } from "react-icons/ti";
-import { useEffect, useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useGlobalContext } from "../../context/GlobalContext";
-import { useSocketContext } from "../../context/SocketContext";
+
 
 function MessageDisplay() {
   const { selectedConversation, setSelectedConversation } = useGlobalContext();
-  const { socket } = useSocketContext();
-  const [typingStatus, setTypingStatus] = useState(false);
-
-  useEffect(() => {
-    socket?.on("typing", ({ from }) => {
-      if (from === selectedConversation?._id) {
-        setTypingStatus(true);
-      }
-    });
-
-    socket?.on("stopTyping", ({ from }) => {
-      if (from === selectedConversation?._id) {
-        setTypingStatus(false);
-      }
-    });
-
-    return () => {
-      socket?.off("typing");
-      socket?.off("stopTyping");
-      // setSelectedConversation(null);
-    };
-  }, [selectedConversation]);
 
   return (
     <div
@@ -58,7 +35,7 @@ function MessageDisplay() {
             />
           </div>
 
-          <Messages typingStatus={typingStatus}/>
+          <Messages/>
           <Messageinput />
         </>
       )}
