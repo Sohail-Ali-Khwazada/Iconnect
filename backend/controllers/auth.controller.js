@@ -5,7 +5,7 @@ import generateTokenAndSetCookie from "../utils/generateToken.js";
 
 export const signUp = async (req, res) => {
   try {
-    const { fullName, username, password, confirmPassword, gender } = req.body;
+    const { fullName, username, password, confirmPassword, gender, publicKey } = req.body;
 
 
     if (password !== confirmPassword) {
@@ -27,7 +27,8 @@ export const signUp = async (req, res) => {
       username,
       password: hashPassword,
       gender,
-      profilePic 
+      profilePic,
+      publicKey 
     })
 
     if (newUser) {
@@ -38,7 +39,8 @@ export const signUp = async (req, res) => {
         fullName: newUser.fullName,
         username: newUser.username,
         profilePic: newUser.profilePic,
-        token
+        token,
+        publicKey: newUser.publicKey
       });
     } else {
       res.status(400).json({ error: "Invalid user data" });
@@ -67,7 +69,8 @@ export const loginUser = async (req, res) => {
       fullName: user.fullName,
       username: user.username,
       profilePic: user.profilePic,
-      token
+      token,
+      publicKey: user.publicKey
     });
 
   } catch (error) {

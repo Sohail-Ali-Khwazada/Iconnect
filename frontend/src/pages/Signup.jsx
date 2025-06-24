@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useSignup from "../hooks/useSignup";
+import useGenerateKeys from "../hooks/useGenerateKeys";
 
 
 function Signup() {
@@ -14,6 +15,7 @@ function Signup() {
   });
 
   const {loading,signup} = useSignup();
+  const { generateKeyPair } = useGenerateKeys();
   const navigate = useNavigate();
  
 
@@ -21,9 +23,9 @@ function Signup() {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    const success =await signup(inputs);
+    const { publicKey } = await generateKeyPair();
+    const success = await signup({...inputs,publicKey});
     if(success) navigate("/home");
-
   }
 
   return (
