@@ -1,6 +1,4 @@
-
 function useGenerateKeys() {
-
 
   const generateKeyPair = async () => {
     try {
@@ -19,7 +17,7 @@ function useGenerateKeys() {
       const pkcs8PrivateKey = await window.crypto.subtle.exportKey("pkcs8", keyPair.privateKey);
       const privateKeyBase64 = bufferToBase64(pkcs8PrivateKey);
 
-      return saveKeys(privateKeyBase64,publicKeyBase64);
+      return { privateKeyBase64, publicKeyBase64 };
 
     } catch (error) {
       console.error("Key generation failed:", error);
@@ -35,8 +33,4 @@ function bufferToBase64(buffer) {
   return btoa(String.fromCharCode(...new Uint8Array(buffer)));
 }
 
-function saveKeys(privateKey, publicKey) {
-  //save private key and return public key
-  
-  return { publicKey };
-}
+

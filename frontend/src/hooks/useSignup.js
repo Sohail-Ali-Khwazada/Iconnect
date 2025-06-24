@@ -10,8 +10,8 @@ function useSignup() {
   const { setAuthUser,setAuthToken } = useGlobalContext();
 
 
-  const signup = async ({ fullName, username, password, confirmPassword, gender, publicKey }) => {
-    const success = handleInputErrors({ fullName, username, password, confirmPassword, gender, publicKey});
+  const signup = async ({ fullName, username, password, confirmPassword, gender, publicKeyBase64 }) => {
+    const success = handleInputErrors({ fullName, username, password, confirmPassword, gender, publicKeyBase64});
 
     if (!success) return false;
     setLoading(true);
@@ -20,7 +20,7 @@ function useSignup() {
       const res = await fetch(`${import.meta.env.VITE_BACKEND_URI}/api/auth/signup`,{
         method: "Post",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fullName, username, password, confirmPassword, gender,publicKey }),
+        body: JSON.stringify({ fullName, username, password, confirmPassword, gender,publicKey: publicKeyBase64 }),
         credentials: 'include'
       });
       const data = await res.json();
@@ -48,7 +48,7 @@ function useSignup() {
 
 export default useSignup
 
-function handleInputErrors({ fullName, username, password, confirmPassword, gender, publicKey }) {
+function handleInputErrors({ fullName, username, password, confirmPassword, gender, publicKeyBase64 }) {
   if (!fullName || !username || !password || !confirmPassword || !gender) {
     toast.error("Please fill in all the fields")
     return false;
@@ -61,8 +61,8 @@ function handleInputErrors({ fullName, username, password, confirmPassword, gend
     toast.error("Password must be at least 6 characters");
     return false;
   }
-  if (!publicKey || publicKey.length == 0) {
-    // toast.error("Error generating unique identifier");
+  if (!publicKeyBase64 || publicKeyBase64.length == 0) {
+    console.error("Error generating unique identifier");
     return false;
   }
 
