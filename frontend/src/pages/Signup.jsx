@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useSignup from "../hooks/useSignup";
-import useGenerateKeys from "../hooks/useGenerateKeys";
 import { savePrivateKey } from "../db/keyStore";
+import { generateKeyPair } from "../utils/E2EE";
 
 
 
@@ -17,7 +17,6 @@ function Signup() {
   });
 
   const {loading,signup} = useSignup();
-  const { generateKeyPair } = useGenerateKeys();
   const navigate = useNavigate();
  
 

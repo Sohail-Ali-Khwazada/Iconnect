@@ -1,6 +1,7 @@
 import useGetConversations from "../../hooks/useGetConversations";
 import { useSocketContext } from "../../context/SocketContext";
 import { useGlobalContext } from "../../context/GlobalContext";
+import { generateSharedKey } from "../../utils/E2EE";
 
 
 function Conversations() {
@@ -18,16 +19,22 @@ function Conversations() {
 }
 
 function Conversation({conversation}) {
-  const {selectedConversation,setSelectedConversation} = useGlobalContext();
+  const {selectedConversation,setSelectedConversation,setsharedKey,privateKey} = useGlobalContext();
   const isSelected = selectedConversation?._id === conversation._id;
   const {onlineUsers} = useSocketContext();
   const isOnline = onlineUsers.includes(conversation._id) ? "online" : "";
+
+  const handleSelection = async() => {
+    setSelectedConversation(conversation);
+    const { sharedKey } = await generateSharedKey(privateKey,conversation.publicKey);
+    setsharedKey(sharedKey);
+  }
   
   return (
     <>
     <div className={`conversation-wrapper flex w-full h-16 relative gap-4 flex-shrink-0  items-center rounded px-6 py-1 cursor-pointer hover:bg-[#4B4D58]
     ${isSelected ? "bg-[#4B4D58]" : ""}`}
-    onClick={() => setSelectedConversation(conversation)}
+    onClick={handleSelection}
     >
 
       <div className={`avatar ${isOnline}`}>
@@ -48,4 +55,4 @@ function Conversation({conversation}) {
   )
 }
 
-export default Conversations
+export default Conversations;

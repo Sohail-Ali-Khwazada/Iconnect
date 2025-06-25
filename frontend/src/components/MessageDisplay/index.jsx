@@ -6,7 +6,12 @@ import { useGlobalContext } from "../../context/GlobalContext";
 
 
 function MessageDisplay() {
-  const { selectedConversation, setSelectedConversation } = useGlobalContext();
+  const { selectedConversation, setSelectedConversation, setsharedKey } = useGlobalContext();
+
+  const handleClick = () => {
+    setSelectedConversation(null);
+    setsharedKey(null);
+  }
 
   return (
     <div
@@ -31,7 +36,7 @@ function MessageDisplay() {
             </span>
             <IoMdArrowRoundBack
               className="absolute right-3 w-8 h-5 cursor-pointer"
-              onClick={() => setSelectedConversation(null)}
+              onClick={handleClick}
             />
           </div>
 
