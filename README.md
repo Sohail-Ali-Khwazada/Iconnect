@@ -8,7 +8,7 @@
 
 - 🔐 Secure user authentication using JSON Web Tokens (JWT)
 - 💬 Real-time one-to-one messaging via Socket.io
-- 🖼️ Auto-generated profile pictures according to gender
+- 🖼️ Auto-generated profile pictures of initial according to username
 - 🟢 Online/offline user status indicators
 - 📱 Fully responsive UI using Daisy UI + Tailwind CSS
 - 🔄 RESTful API architecture for frontend-backend communication
