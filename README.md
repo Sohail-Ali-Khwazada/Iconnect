@@ -8,6 +8,8 @@
 
 - 🔐 Secure user authentication using JSON Web Tokens (JWT)
 - 💬 Real-time one-to-one messaging via Socket.io
+- 🔐 End-to-end encryption (E2EE) for secure conversations
+- ⌨️ Typing indicators to enhance chat interactivity
 - 🖼️ Auto-generated profile pictures of initial according to username
 - 🟢 Online/offline user status indicators
 - 📱 Fully responsive UI using Daisy UI + Tailwind CSS
